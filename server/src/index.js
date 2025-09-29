@@ -24,7 +24,22 @@ app.get('/api/koleksi', async (_req, res) => {
   }
 });
 
+// GET /api/koleksi/:id - fetch single item by id
+app.get('/api/koleksi/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    const [rows] = await pool.query(
+      'SELECT id, judul, gambar, deskripsi FROM galeri_museum WHERE id = ? LIMIT 1',
+      [id]
+    );
+    if (!rows.length) return res.status(404).json({ error: 'Not found' });
+    res.json(rows[0]);
+  } catch (err) {
+    console.error('DB error:', err);
+    res.status(500).json({ error: 'Database error' });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`API running on http://localhost:${PORT}`);
 });
-
