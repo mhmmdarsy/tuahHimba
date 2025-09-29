@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Footer() {
   return (
-    <footer id="tentang" className="bg-blue-950 text-white py-15 mt-10">
+    <footer id="tentang" className="bg-blue-950 text-white pt-6 pb-6">
       <div className="max-w-7xl mx-auto flex self-start text-left">
         <img src="/assets/images/lambang_kukar.png" alt="Museum Kayu" className="rounded-lg mr-6 self-start" style={{ width: '80%', maxWidth: 100 }} />
         <div>
@@ -37,9 +37,8 @@ export default function Footer() {
       </div>
       <div className="border-t border-white mt-5 mx-40"></div>
       <div className="flex justify-center mt-5">
-        <p>&copy; 2021 Kabupaten Kutai Kartanegara. All Rights Reserved</p>
+        <p>&copy; 2025 Kabupaten Kutai Kartanegara. All Rights Reserved</p>
       </div>
     </footer>
   )
 }
-

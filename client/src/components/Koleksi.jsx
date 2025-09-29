@@ -54,9 +54,9 @@ export default function Koleksi() {
 
   return (
     <section id="koleksi" className="py-16 px-6">
-      <div className="max-w-7xl mx-auto text-start px-30">
-        <h2 className="text-7xl font-extrabold mb-4">Koleksi</h2>
-        <div className="w-full px-4 py-8 bg-cover bg-center">
+      <div className="max-w-7xl mx-auto text-start mt-3 px-30">
+        <h2 className="text-5xl font-extrabold mb-4">Koleksi</h2>
+        <div className="w-full py-2 bg-cover bg-center">
           <div className="swiper mySwiper">
             <div className="swiper-wrapper">
               {items.map((it) => (
