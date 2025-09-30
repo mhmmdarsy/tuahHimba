@@ -22,10 +22,11 @@ export default function Hero() {
       }}
     >
       <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
-      <div className="absolute inset-0 text-white">
-        <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-4 pt-[525px]">
-          <h1 className="text-5xl font-bold mb-3">Museum Kayu Tuah Himba</h1>
-          <p className="mb-3 md:pr-2 lg:pr-24">
+
+      <div className="relative z-10 flex items-end h-full text-white pb-18">
+        <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-4 pt-[70vh]">
+          <h1 className="text-2xl sm:text-2xl md:text-3xl lg:text-5xl font-bold mb-4 leading-tight">Museum Kayu Tuah Himba</h1>
+          <p className="mb-4 md:pr-2 lg:mr-45">
             Museum Kayu Tuah Himba adalah museum yang terletak di Tenggarong,
             Kalimantan Timur, Indonesia. Museum ini adalah tempat untuk
             menyimpan berbagai jenis kayu yang ada di Kalimantan Timur.

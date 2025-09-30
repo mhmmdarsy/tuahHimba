@@ -35,7 +35,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className="border-t border-white mt-5 mx-40"></div>
+      <div className="border-t border-white mt-5 mx-max"></div>
       <div className="flex justify-center mt-5">
         <p>&copy; 2025 Kabupaten Kutai Kartanegara. All Rights Reserved</p>
       </div>
