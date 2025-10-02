@@ -2,3 +2,9 @@
 
 /* Global overrides */
 body { font-family: 'Inter', sans-serif; }
+
+/* Smooth scrolling for in-page anchors */
+html { scroll-behavior: smooth; }
+
+/* Prevent anchor targets from hiding under fixed navbar */
+#sejarah { scroll-margin-top: 80px; }
