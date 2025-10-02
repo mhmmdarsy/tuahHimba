@@ -1,0 +1,12 @@
+node_modules
+dist
+build
+coverage
+.cache
+.turbo
+.next
+.DS_Store
+*.min.*
+*.log
+client/dist
+server/dist

@@ -10,13 +10,13 @@ export default function Navbar() {
             <img src="/assets/icon/logo.svg" alt="Logo" className="h-9 aspect-auto ml-1" />
           </Link>
         </div>
-        <div className="space-x-10" style={{ fontSize: 14 }}>
-          <Link to="/" className="hover:text-[#85a3cc] hover:font-semibold transition-all text-white">Beranda</Link>
-          <a href="/#koleksi" className="hover:text-[#85a3cc] hover:font-semibold transition-all text-white">Koleksi</a>
-          <Link to="/galeri" className="hover:text-gray-400 hover:font-semibold transition-all text-white">Galeri</Link>
-          <a href="/#lokasi" className="hover:text-gray-400 hover:font-semibold transition-all text-white">Lokasi</a>
-          <Link to="/tentang" className="hover:text-gray-400 hover:font-semibold transition-all text-white">Tentang</Link>
-        </div>
+          <div className="space-x-11 text-white [&_a]:text-[14px] [&_a]:transition-colors [&_a]:duration-300 [&_a:hover]:text-[#85a3cc]">
+            <Link to="/">Beranda</Link>
+            <a href="/#koleksi">Koleksi</a>
+            <Link to="/galeri">Galeri</Link>
+            <a href="/#lokasi">Lokasi</a>
+            <Link to="/tentang">Tentang</Link>
+          </div>
       </div>
     </nav>
   )
