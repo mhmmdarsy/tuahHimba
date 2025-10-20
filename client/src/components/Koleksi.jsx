@@ -4,6 +4,13 @@ import Swiper from 'swiper'
 import { Navigation } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/navigation'
+import Card from '@mui/material/Card'
+import CardContent from '@mui/material/CardContent'
+import CardMedia from '@mui/material/CardMedia'
+import Typography from '@mui/material/Typography'
+import Button from '@mui/material/Button'
+import CardActionArea from '@mui/material/CardActionArea'
+import CardActions from '@mui/material/CardActions'
 
 export default function Koleksi() {
   const [items, setItems] = useState([])
@@ -60,11 +67,28 @@ export default function Koleksi() {
           <div className="swiper mySwiper">
             <div className="swiper-wrapper">
               {items.map((it) => (
-                <div key={it.id} className="swiper-slide rounded-xl overflow-hidden shadow-lg relative cursor-pointer" onClick={() => navigate(`/deskripsi/${it.id}`)}>
-                  <img src={`/assets/images/${it.gambar}`} className="w-full h-60 object-cover" alt={it.judul} />
-                  <div className="text-white text-xl font-semibold p-4 bg-gradient-to-t from-black/70 via-black/30 to-transparent absolute bottom-0 w-full">
-                    <p>{it.judul}</p>
-                  </div>
+                <div key={it.id} className="swiper-slide p-1">
+                  <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+                    <CardActionArea onClick={() => navigate(`/deskripsi/${it.id}`)} sx={{ alignItems: 'stretch' }}>
+                      <CardMedia
+                        component="img"
+                        height="224"
+                        image={`/assets/images/${it.gambar}`}
+                        alt={it.judul}
+                      />
+                      <CardContent>
+                        <Typography gutterBottom variant="h6" component="div">
+                          {it.judul}
+                        </Typography>
+                        {/* You can add a short description here if available */}
+                      </CardContent>
+                    </CardActionArea>
+                    <CardActions sx={{ mt: 'auto', justifyContent: 'flex-end' }}>
+                      <Button size="small" color="primary" onClick={() => navigate(`/deskripsi/${it.id}`)}>
+                        Detail
+                      </Button>
+                    </CardActions>
+                  </Card>
                 </div>
               ))}
             </div>
