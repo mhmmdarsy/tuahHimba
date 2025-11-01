@@ -36,4 +36,3 @@ Environment variable (frontend)
 Notes
 - Direct DB access from the browser is not possible; the backend mediates MySQL access.
 - Swiper is loaded from CDN globally and initialized by the Koleksi component.
-
