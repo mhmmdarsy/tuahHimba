@@ -72,8 +72,8 @@ export default function Koleksi() {
                     <CardActionArea onClick={() => navigate(`/deskripsi/${it.id}`)} sx={{ alignItems: 'stretch' }}>
                       <CardMedia
                         component="img"
-                        height="224"
                         image={`/assets/images/${it.gambar}`}
+                        sx={{ height: 224 }}
                         alt={it.judul}
                       />
                       <CardContent>
