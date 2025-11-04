@@ -35,14 +35,16 @@ export default function GalleryPage() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {items.map((it) => (
-            <figure key={it.id} className="block">
+            <figure key={it.gambar} className="block">
               <img
                 src={`/assets/images/${it.gambar}`}
-                alt={it.judul}
+                alt={it.deskripsi || it.gambar}
                 loading="lazy"
                 className="w-full h-64 object-cover rounded-lg shadow"
               />
-              <figcaption className="mt-2 text-sm text-gray-600">{it.judul}</figcaption>
+              {it.deskripsi && (
+                <figcaption className="mt-2 text-sm text-gray-600">{it.deskripsi}</figcaption>
+              )}
             </figure>
           ))}
           {!error && items.length === 0 && (
