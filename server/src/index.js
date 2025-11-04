@@ -41,8 +41,7 @@ app.post('/api/galeri/sync', async (_req, res) => {
       const relPath = `gallery/${fname}`; // stored path relative to /assets/images
       const [rows] = await pool.query('SELECT id FROM galeri WHERE gambar = ? LIMIT 1', [relPath]);
       if (rows.length) { skipped++; continue; }
-      const judul = prettifyName(fname);
-      await pool.query('INSERT INTO galeri (judul, gambar) VALUES (?, ?)', [judul, relPath]);
+      await pool.query('INSERT INTO galeri (gambar) VALUES (?)', [relPath]);
       inserted++;
     }
     res.json({ ok: true, totalFiles: files.length, inserted, skipped, dir: galleryDir });
@@ -55,7 +54,7 @@ app.post('/api/galeri/sync', async (_req, res) => {
 // GET /api/galeri - list gallery items (reuse galeri_museum for now)
 app.get('/api/galeri', async (_req, res) => {
   try {
-    const [rows] = await pool.query('SELECT id, judul, gambar FROM galeri ORDER BY id DESC');
+    const [rows] = await pool.query('SELECT gambar, deskripsi FROM galeri ORDER BY id DESC');
     res.json(rows);
   } catch (err) {
     console.error('DB error:', err);
