@@ -1,55 +1,27 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 export default function GalleryPage() {
-  const base = (import.meta && import.meta.env && import.meta.env.BASE_URL) ? import.meta.env.BASE_URL : '/'
-  const galleryFiles = [
-    'alatdapur.jpg',
-    'alatkayu.jpg',
-    'alatkayu2.jpg',
-    'biawak.jpg',
-    'buaya.jpg',
-    'contohkayu.jpg',
-    'gaharu.jpg',
-    'jenisrotan.jpg',
-    'kayu1.jpg',
-    'kayu2.jpg',
-    'kayu3.jpg',
-    'kayu4.jpg',
-    'kayu5.jpg',
-    'kayu6.jpg',
-    'kayu7.jpg',
-    'kayu8.jpg',
-    'kayu9.jpg',
-    'kucinghutan.jpg',
-    'lamin.jpg',
-    'obat1.jpg',
-    'obat2.jpg',
-    'overview.jpg',
-    'overview2.jpg',
-    'overview3.jpg',
-    'overview4.jpg',
-    'overview5.jpg',
-    'overview6.jpg',
-    'overview7.jpg',
-    'patung.jpg',
-    'patung2.jpg',
-    'patung3.jpg',
-    'rotan.jpg',
-    'rotan2.jpg',
-    'rotan3.jpg',
-    'rotan4.jpg',
-    'rotan5.jpg',
-    'rotan6.jpg',
-    'rumahadat.jpg',
-    'rumahadat2.jpg',
-    'rumahadat3.jpg',
-    'rumahadat4.jpg'
-  ]
+  const [items, setItems] = useState([])
+  const [error, setError] = useState('')
+  const apiBase = import.meta.env.VITE_API_BASE || 'http://localhost:5174'
 
-  const prettify = (name) => name
-    .replace(/\.jpg|\.jpeg|\.png|\.webp|\.gif/i, '')
-    .replace(/[-_]+/g, ' ')
-    .replace(/\b\w/g, (c) => c.toUpperCase())
+  useEffect(() => {
+    let alive = true
+    const load = async () => {
+      try {
+        const res = await fetch(`${apiBase}/api/galeri`)
+        if (!alive) return
+        if (!res.ok) throw new Error('not-ok')
+        const data = await res.json()
+        setItems(data)
+        setError('')
+      } catch (_) {
+        setError('Gagal memuat galeri')
+      }
+    }
+    load()
+    return () => { alive = false }
+  }, [apiBase])
 
   return (
     <main className="pt-24 pb-16 px-6">
@@ -57,18 +29,25 @@ export default function GalleryPage() {
         <h1 className="text-5xl font-extrabold mb-6">Galeri</h1>
         <p className="text-gray-700 mb-8">Semua karya yang ada di Museum Kayu Tuah Himba.</p>
 
+        {error && (
+          <div className="text-red-600 mb-6">{error}</div>
+        )}
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {galleryFiles.map((file) => (
-            <figure key={file} className="block">
+          {items.map((it) => (
+            <figure key={it.id} className="block">
               <img
-                src={`${base}assets/images/gallery/${file}`}
-                alt={prettify(file)}
+                src={`/assets/images/${it.gambar}`}
+                alt={it.judul}
                 loading="lazy"
                 className="w-full h-64 object-cover rounded-lg shadow"
               />
-              <figcaption className="mt-2 text-sm text-gray-600">{prettify(file)}</figcaption>
+              <figcaption className="mt-2 text-sm text-gray-600">{it.judul}</figcaption>
             </figure>
           ))}
+          {!error && items.length === 0 && (
+            <div className="text-gray-600">Belum ada data galeri.</div>
+          )}
         </div>
       </div>
     </main>
