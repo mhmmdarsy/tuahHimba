@@ -13,6 +13,17 @@ app.get('/api/health', (_req, res) => {
   res.json({ ok: true });
 });
 
+// GET /api/galeri - list gallery items (reuse galeri_museum for now)
+app.get('/api/galeri', async (_req, res) => {
+  try {
+    const [rows] = await pool.query('SELECT id, judul, gambar FROM galeri_museum ORDER BY id DESC');
+    res.json(rows);
+  } catch (err) {
+    console.error('DB error:', err);
+    res.status(500).json({ error: 'Database error' });
+  }
+});
+
 // GET /api/koleksi - fetch items from galeri_museum
 app.get('/api/koleksi', async (_req, res) => {
   try {
