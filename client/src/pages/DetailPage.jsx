@@ -10,21 +10,19 @@ export default function DetailPage() {
     const load = async () => {
       try {
         const apiBase = import.meta.env.VITE_API_BASE || 'http://localhost:5174'
+        setError('')
+        setItem(null)
         const res = await fetch(`${apiBase}/api/koleksi/${id}`)
-        if (!res.ok) throw new Error('not-ok')
-        const data = await res.json()
-        setItem(data)
+        if (res.ok) {
+          const data = await res.json()
+          setItem(data)
+        } else if (res.status === 404) {
+          setError('Data tidak ditemukan')
+        } else {
+          setError('Gagal memuat data')
+        }
       } catch (_) {
-        const fallback = [
-          { id: 1, judul: 'Ulin', gambar: 'ulin.jpg', deskripsi: '<p>Kayu ulin adalah ...</p>' },
-          { id: 2, judul: 'Meranti', gambar: 'meranti.jpg', deskripsi: '<p>Kayu meranti adalah ...</p>' },
-          { id: 3, judul: 'Bayur', gambar: 'bayur.jpg', deskripsi: '<p>Kayu bayur adalah ...</p>' },
-          { id: 4, judul: 'Cempedak', gambar: 'cempedak.jpg', deskripsi: '<p>Kayu cempedak adalah ...</p>' },
-          { id: 5, judul: 'Durian', gambar: 'durian.jpg', deskripsi: '<p>Kayu durian adalah ...</p>' },
-          { id: 6, judul: 'Nyatoh', gambar: 'nyatoh.jpg', deskripsi: '<p>Kayu nyatoh adalah ...</p>' }
-        ].find(x => String(x.id) === String(id))
-        if (fallback) setItem(fallback)
-        else setError('Data tidak ditemukan')
+        setError('Tidak dapat terhubung ke server')
       }
     }
     load()
@@ -50,4 +48,3 @@ export default function DetailPage() {
     </main>
   )
 }
-
