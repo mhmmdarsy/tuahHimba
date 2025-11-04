@@ -1,3 +1,4 @@
+import React from 'react'
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 
@@ -49,13 +50,15 @@ const preloadImages = async urls => {
 const Masonry = ({
   items,
   ease = 'power3.out',
-  duration = 0.6,
+  duration = 1,
   stagger = 0.05,
   animateFrom = 'bottom',
   scaleOnHover = true,
   hoverScale = 0.95,
   blurToFocus = true,
-  colorShiftOnHover = false
+  colorShiftOnHover = true,
+  overlayHoverOpacity = 0.4,
+  overlayHoverDuration = 0.3
 }) => {
   const columns = useMedia(
     ['(min-width:1500px)', '(min-width:1000px)', '(min-width:600px)', '(min-width:400px)'],
@@ -175,7 +178,7 @@ const Masonry = ({
     }
     if (colorShiftOnHover) {
       const overlay = element.querySelector('.color-overlay')
-      if (overlay) gsap.to(overlay, { opacity: 0.3, duration: 0.3 })
+      if (overlay) gsap.to(overlay, { opacity: overlayHoverOpacity, duration: overlayHoverDuration })
     }
   }
 
@@ -189,7 +192,7 @@ const Masonry = ({
     }
     if (colorShiftOnHover) {
       const overlay = element.querySelector('.color-overlay')
-      if (overlay) gsap.to(overlay, { opacity: 0, duration: 0.3 })
+      if (overlay) gsap.to(overlay, { opacity: 0, duration: overlayHoverDuration })
     }
   }
 
@@ -210,7 +213,7 @@ const Masonry = ({
             style={{ backgroundImage: `url(${item.img})` }}
           >
             {colorShiftOnHover && (
-              <div className="color-overlay absolute inset-0 rounded-[10px] bg-gradient-to-tr from-pink-500/50 to-sky-500/50 opacity-0 pointer-events-none" />
+              <div className="color-overlay absolute inset-0 rounded-[10px] bg-gradient-to-tr bg-black opacity-0 pointer-events-none" />
             )}
           </div>
         </div>
@@ -220,4 +223,3 @@ const Masonry = ({
 }
 
 export default Masonry
-
