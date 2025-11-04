@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react'
-import Masonry from '../components/Masonry'
+import BentoGrid from '../components/BentoGrid'
 
 export default function GalleryPage() {
   const [items, setItems] = useState([])
@@ -42,12 +42,11 @@ export default function GalleryPage() {
         {error && <div className="text-red-600 mb-6">{error}</div>}
 
         {masonryItems.length > 0 ? (
-          <Masonry
+          <BentoGrid
             items={masonryItems}
-            animateFrom="bottom"
-            stagger={0.06}
-            hoverScale={0.97}
-            blurToFocus
+            overlay
+            overlayClassName="bg-gradient-to-tr from-violet-500/30 to-fuchsia-500/30"
+            overlayHoverOpacityClass="group-hover:opacity-40"
           />
         ) : !error ? (
           <div className="text-gray-600">Belum ada data galeri.</div>
