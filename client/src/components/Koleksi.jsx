@@ -18,25 +18,46 @@ export default function Koleksi() {
   const navigate = useNavigate()
 
   useEffect(() => {
+    let alive = true
+    const apiBase = import.meta.env.VITE_API_BASE || 'http://localhost:5174'
+
+    const shallowEqualList = (a = [], b = []) => {
+      if (a.length !== b.length) return false
+      for (let i = 0; i < a.length; i++) {
+        const x = a[i], y = b[i]
+        if (!x || !y) return false
+        if (x.id !== y.id || x.judul !== y.judul || x.gambar !== y.gambar) return false
+      }
+      return true
+    }
+
     const load = async () => {
       try {
-        const apiBase = import.meta.env.VITE_API_BASE || 'http://localhost:5174'
         const res = await fetch(`${apiBase}/api/koleksi`)
+        if (!alive) return
         if (!res.ok) throw new Error('Failed to fetch koleksi')
         const data = await res.json()
-        setItems(data)
-      } catch (e) {
-        setItems([
-          { id: 1, judul: 'Ulin', gambar: 'ulin.jpg' },
-          { id: 2, judul: 'Meranti', gambar: 'meranti.jpg' },
-          { id: 3, judul: 'Bayur', gambar: 'bayur.jpg' },
-          { id: 4, judul: 'Cempedak', gambar: 'cempedak.jpg' },
-          { id: 5, judul: 'Durian', gambar: 'durian.jpg' },
-          { id: 6, judul: 'Nyatoh', gambar: 'nyatoh.jpg' }
-        ])
-      }
+        setItems((prev) => (shallowEqualList(prev, data) ? prev : data))
+      } catch (e) { }
     }
+
+    // initial load
     load()
+
+    // auto refresh every 10s
+    const timer = setInterval(load, 10000)
+
+    // refetch on tab focus/visible
+    const onVisible = () => {
+      if (document.visibilityState === 'visible') load()
+    }
+    document.addEventListener('visibilitychange', onVisible)
+
+    return () => {
+      alive = false
+      clearInterval(timer)
+      document.removeEventListener('visibilitychange', onVisible)
+    }
   }, [])
 
   useEffect(() => {
