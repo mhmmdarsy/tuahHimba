@@ -7,16 +7,26 @@ export default function DetailPage() {
   const [error, setError] = useState('')
 
   useEffect(() => {
+    let alive = true
+    const apiBase = import.meta.env.VITE_API_BASE || 'http://localhost:5174'
+
     const load = async () => {
       try {
-        const apiBase = import.meta.env.VITE_API_BASE || 'http://localhost:5174'
-        setError('')
-        setItem(null)
         const res = await fetch(`${apiBase}/api/koleksi/${id}`)
+        if (!alive) return
         if (res.ok) {
           const data = await res.json()
-          setItem(data)
+          setError('')
+          setItem((prev) => {
+            try {
+              const same = prev && prev.id === data.id && prev.judul === data.judul && prev.gambar === data.gambar && prev.deskripsi === data.deskripsi
+              return same ? prev : data
+            } catch {
+              return data
+            }
+          })
         } else if (res.status === 404) {
+          setItem(null)
           setError('Data tidak ditemukan')
         } else {
           setError('Gagal memuat data')
@@ -25,7 +35,26 @@ export default function DetailPage() {
         setError('Tidak dapat terhubung ke server')
       }
     }
+
+    // first load
+    setError('')
+    setItem(null)
     load()
+
+    // auto refresh every 10s
+    const timer = setInterval(load, 10000)
+
+    // refetch on tab focus/visible
+    const onVisible = () => {
+      if (document.visibilityState === 'visible') load()
+    }
+    document.addEventListener('visibilitychange', onVisible)
+
+    return () => {
+      alive = false
+      clearInterval(timer)
+      document.removeEventListener('visibilitychange', onVisible)
+    }
   }, [id])
 
   if (error) return <main className="pt-24 pb-16 px-6"><div className="max-w-7xl mx-auto">{error}</div></main>
