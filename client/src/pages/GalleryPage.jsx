@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
+import Masonry from '../components/Masonry'
 
 export default function GalleryPage() {
   const [items, setItems] = useState([])
@@ -23,34 +24,34 @@ export default function GalleryPage() {
     return () => { alive = false }
   }, [apiBase])
 
+  const masonryItems = useMemo(() => (
+    items.map((it, idx) => ({
+      id: it.gambar || String(idx),
+      img: `/assets/images/${it.gambar}`,
+      url: `/assets/images/${it.gambar}`,
+      height: 600
+    }))
+  ), [items])
+
   return (
     <main className="pt-24 pb-16 px-6">
       <div className="max-w-7xl mx-auto">
         <h1 className="text-5xl font-extrabold mb-6">Galeri</h1>
         <p className="text-gray-700 mb-8">Semua karya yang ada di Museum Kayu Tuah Himba.</p>
 
-        {error && (
-          <div className="text-red-600 mb-6">{error}</div>
-        )}
+        {error && <div className="text-red-600 mb-6">{error}</div>}
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {items.map((it) => (
-            <figure key={it.gambar} className="block">
-              <img
-                src={`/assets/images/${it.gambar}`}
-                alt={it.deskripsi || it.gambar}
-                loading="lazy"
-                className="w-full h-64 object-cover rounded-lg shadow"
-              />
-              {it.deskripsi && (
-                <figcaption className="mt-2 text-sm text-gray-600">{it.deskripsi}</figcaption>
-              )}
-            </figure>
-          ))}
-          {!error && items.length === 0 && (
-            <div className="text-gray-600">Belum ada data galeri.</div>
-          )}
-        </div>
+        {masonryItems.length > 0 ? (
+          <Masonry
+            items={masonryItems}
+            animateFrom="bottom"
+            stagger={0.06}
+            hoverScale={0.97}
+            blurToFocus
+          />
+        ) : !error ? (
+          <div className="text-gray-600">Belum ada data galeri.</div>
+        ) : null}
       </div>
     </main>
   )
