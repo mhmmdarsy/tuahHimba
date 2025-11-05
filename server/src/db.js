@@ -1,4 +1,4 @@
-import mysql from 'mysql2/promise';
+import mysql from 'mysql2/promise'
 
 const {
   DB_HOST = 'localhost',
@@ -6,7 +6,7 @@ const {
   DB_PASSWORD = '',
   DB_NAME = 'u353862197_galeri_museum',
   DB_PORT = '3306'
-} = process.env;
+} = process.env
 
 export const pool = mysql.createPool({
   host: DB_HOST,
@@ -17,4 +17,4 @@ export const pool = mysql.createPool({
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0
-});
+})

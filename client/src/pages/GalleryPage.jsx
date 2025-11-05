@@ -21,17 +21,21 @@ export default function GalleryPage() {
       }
     }
     load()
-    return () => { alive = false }
+    return () => {
+      alive = false
+    }
   }, [apiBase])
 
-  const masonryItems = useMemo(() => (
-    items.map((it, idx) => ({
-      id: it.gambar || String(idx),
-      img: `/assets/images/${it.gambar}`,
-      url: `/assets/images/${it.gambar}`,
-      height: 600
-    }))
-  ), [items])
+  const masonryItems = useMemo(
+    () =>
+      items.map((it, idx) => ({
+        id: it.gambar || String(idx),
+        img: `/assets/images/${it.gambar}`,
+        url: `/assets/images/${it.gambar}`,
+        height: 600
+      })),
+    [items]
+  )
 
   return (
     <main className="pt-24 pb-16 px-6">

@@ -20,13 +20,15 @@ export default function Navbar() {
             <img src="/assets/icon/logo.svg" alt="Logo" className="h-9 aspect-auto ml-1" />
           </Link>
         </div>
-          <div className="space-x-11 text-white [&_a]:text-[14px] [&_a]:transition-colors [&_a]:duration-300 [&_a:hover]:text-[#85a3cc]">
-            <Link to="/" onClick={handleHomeClick}>Beranda</Link>
-            <a href="/#koleksi">Koleksi</a>
-            <a href="/#lokasi">Lokasi</a>
-            <Link to="/galeri">Galeri</Link>
-            <Link to="/tentang">Tentang</Link>
-          </div>
+        <div className="space-x-11 text-white [&_a]:text-[14px] [&_a]:transition-colors [&_a]:duration-300 [&_a:hover]:text-[#85a3cc]">
+          <Link to="/" onClick={handleHomeClick}>
+            Beranda
+          </Link>
+          <a href="/#koleksi">Koleksi</a>
+          <a href="/#lokasi">Lokasi</a>
+          <Link to="/galeri">Galeri</Link>
+          <Link to="/tentang">Tentang</Link>
+        </div>
       </div>
     </nav>
   )
