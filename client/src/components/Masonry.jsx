@@ -178,7 +178,8 @@ const Masonry = ({
     }
     if (colorShiftOnHover) {
       const overlay = element.querySelector('.color-overlay')
-      if (overlay) gsap.to(overlay, { opacity: overlayHoverOpacity, duration: overlayHoverDuration })
+      if (overlay)
+        gsap.to(overlay, { opacity: overlayHoverOpacity, duration: overlayHoverDuration })
     }
   }
 

@@ -17,9 +17,14 @@ export default function DetailPage() {
         if (res.ok) {
           const data = await res.json()
           setError('')
-          setItem((prev) => {
+          setItem(prev => {
             try {
-              const same = prev && prev.id === data.id && prev.judul === data.judul && prev.gambar === data.gambar && prev.deskripsi === data.deskripsi
+              const same =
+                prev &&
+                prev.id === data.id &&
+                prev.judul === data.judul &&
+                prev.gambar === data.gambar &&
+                prev.deskripsi === data.deskripsi
               return same ? prev : data
             } catch {
               return data
@@ -57,21 +62,40 @@ export default function DetailPage() {
     }
   }, [id])
 
-  if (error) return <main className="pt-24 pb-16 px-6"><div className="max-w-7xl mx-auto">{error}</div></main>
-  if (!item) return <main className="pt-24 pb-16 px-6"><div className="max-w-7xl mx-auto">Memuat...</div></main>
+  if (error)
+    return (
+      <main className="pt-24 pb-16 px-6">
+        <div className="max-w-7xl mx-auto">{error}</div>
+      </main>
+    )
+  if (!item)
+    return (
+      <main className="pt-24 pb-16 px-6">
+        <div className="max-w-7xl mx-auto">Memuat...</div>
+      </main>
+    )
 
   return (
     <main className="pt-24 pb-16 px-6">
       <div className="max-w-7xl mx-auto text-start mt-3 px-30">
         <div className="flex items-start space-x-6 pt-4">
-          <img src={`/assets/images/${item.gambar}`} alt={item.judul} className="w-1/3 rounded-lg shadow-lg object-cover" style={{ aspectRatio: '2/3' }} />
+          <img
+            src={`/assets/images/${item.gambar}`}
+            alt={item.judul}
+            className="w-1/3 rounded-lg shadow-lg object-cover"
+            style={{ aspectRatio: '2/3' }}
+          />
           <div className="flex flex-col space-y-5 text-black text-justify">
             <h2 className="text-7xl font-extrabold mb-4">{item.judul}</h2>
             <div dangerouslySetInnerHTML={{ __html: item.deskripsi || '' }} />
           </div>
         </div>
         {String(id) === '1' && (
-          <img src="/assets/images/ulin2.jpg" alt="Ulin" className="w-full mt-10 rounded-lg shadow-lg" />
+          <img
+            src="/assets/images/ulin2.jpg"
+            alt="Ulin"
+            className="w-full mt-10 rounded-lg shadow-lg"
+          />
         )}
       </div>
     </main>

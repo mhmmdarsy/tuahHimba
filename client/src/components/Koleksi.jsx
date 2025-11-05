@@ -24,7 +24,8 @@ export default function Koleksi() {
     const shallowEqualList = (a = [], b = []) => {
       if (a.length !== b.length) return false
       for (let i = 0; i < a.length; i++) {
-        const x = a[i], y = b[i]
+        const x = a[i],
+          y = b[i]
         if (!x || !y) return false
         if (x.id !== y.id || x.judul !== y.judul || x.gambar !== y.gambar) return false
       }
@@ -37,8 +38,8 @@ export default function Koleksi() {
         if (!alive) return
         if (!res.ok) throw new Error('Failed to fetch koleksi')
         const data = await res.json()
-        setItems((prev) => (shallowEqualList(prev, data) ? prev : data))
-      } catch (e) { }
+        setItems(prev => (shallowEqualList(prev, data) ? prev : data))
+      } catch (e) {}
     }
 
     // initial load
@@ -63,7 +64,11 @@ export default function Koleksi() {
   useEffect(() => {
     if (items.length === 0) return
     if (swiperRef.current) {
-      try { swiperRef.current.destroy(true, true) } catch { /* noop */ }
+      try {
+        swiperRef.current.destroy(true, true)
+      } catch {
+        /* noop */
+      }
     }
     swiperRef.current = new Swiper('.mySwiper', {
       modules: [Navigation],
@@ -75,7 +80,11 @@ export default function Koleksi() {
     })
     return () => {
       if (swiperRef.current) {
-        try { swiperRef.current.destroy(true, true) } catch { /* noop */ }
+        try {
+          swiperRef.current.destroy(true, true)
+        } catch {
+          /* noop */
+        }
       }
     }
   }, [items])
@@ -87,10 +96,13 @@ export default function Koleksi() {
         <div className="w-full py-2 bg-cover bg-center">
           <div className="swiper mySwiper">
             <div className="swiper-wrapper">
-              {items.map((it) => (
+              {items.map(it => (
                 <div key={it.id} className="swiper-slide p-1">
                   <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-                    <CardActionArea onClick={() => navigate(`/deskripsi/${it.id}`)} sx={{ alignItems: 'stretch' }}>
+                    <CardActionArea
+                      onClick={() => navigate(`/deskripsi/${it.id}`)}
+                      sx={{ alignItems: 'stretch' }}
+                    >
                       <CardMedia
                         component="img"
                         image={`/assets/images/${it.gambar}`}
@@ -105,7 +117,11 @@ export default function Koleksi() {
                       </CardContent>
                     </CardActionArea>
                     <CardActions sx={{ mt: 'auto', justifyContent: 'flex-end' }}>
-                      <Button size="small" color="primary" onClick={() => navigate(`/deskripsi/${it.id}`)}>
+                      <Button
+                        size="small"
+                        color="primary"
+                        onClick={() => navigate(`/deskripsi/${it.id}`)}
+                      >
                         Detail
                       </Button>
                     </CardActions>

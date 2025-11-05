@@ -1,22 +1,30 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 /* Global overrides */
-body { font-family: 'Inter', sans-serif; }
+body {
+  font-family: 'Inter', sans-serif;
+}
 
 /* Smooth scrolling for in-page anchors */
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+}
 
 /* Prevent anchor targets from hiding under fixed navbar */
-#sejarah { scroll-margin-top: 80px; }
+#sejarah {
+  scroll-margin-top: 80px;
+}
 
 /* Swiper controls and slides */
-.swiper-button-next, .swiper-button-prev {
+.swiper-button-next,
+.swiper-button-prev {
   color: white;
   padding: 10px;
   font-size: 0.75rem;
   transition: transform 0.3s ease;
 }
-.swiper-button-next:hover, .swiper-button-prev:hover {
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
   transform: scale(1.2);
 }
 .swiper-slide img {
