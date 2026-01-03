@@ -19,7 +19,10 @@ app.get('/api/health', (_req, res) => {
 // Resolve gallery images folder inside client
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
-const galleryDir = path.resolve(__dirname, '../../client/public/assets/images/gallery')
+const galleryDir = path.resolve(
+  __dirname,
+  '../../client/public/assets/images/gallery',
+)
 
 // Helper to make a human-readable title from filename
 const prettifyName = filename =>
@@ -41,7 +44,10 @@ app.post('/api/galeri/sync', async (_req, res) => {
       skipped = 0
     for (const fname of files) {
       const relPath = `gallery/${fname}` // stored path relative to /assets/images
-      const [rows] = await pool.query('SELECT id FROM galeri WHERE gambar = ? LIMIT 1', [relPath])
+      const [rows] = await pool.query(
+        'SELECT id FROM galeri WHERE gambar = ? LIMIT 1',
+        [relPath],
+      )
       if (rows.length) {
         skipped++
         continue
@@ -49,7 +55,13 @@ app.post('/api/galeri/sync', async (_req, res) => {
       await pool.query('INSERT INTO galeri (gambar) VALUES (?)', [relPath])
       inserted++
     }
-    res.json({ ok: true, totalFiles: files.length, inserted, skipped, dir: galleryDir })
+    res.json({
+      ok: true,
+      totalFiles: files.length,
+      inserted,
+      skipped,
+      dir: galleryDir,
+    })
   } catch (err) {
     console.error('Sync error:', err)
     res.status(500).json({ error: 'Sync failed', details: String(err) })
@@ -59,7 +71,9 @@ app.post('/api/galeri/sync', async (_req, res) => {
 // GET /api/galeri - list gallery items (reuse galeri_museum for now)
 app.get('/api/galeri', async (_req, res) => {
   try {
-    const [rows] = await pool.query('SELECT gambar, deskripsi FROM galeri ORDER BY id DESC')
+    const [rows] = await pool.query(
+      'SELECT gambar, deskripsi FROM galeri ORDER BY id DESC',
+    )
     res.json(rows)
   } catch (err) {
     console.error('DB error:', err)
@@ -70,7 +84,9 @@ app.get('/api/galeri', async (_req, res) => {
 // GET /api/koleksi - fetch items from galeri_museum
 app.get('/api/koleksi', async (_req, res) => {
   try {
-    const [rows] = await pool.query('SELECT id, judul, gambar FROM galeri ORDER BY id DESC')
+    const [rows] = await pool.query(
+      'SELECT id, judul, gambar FROM galeri ORDER BY id DESC',
+    )
     res.json(rows)
   } catch (err) {
     console.error('DB error:', err)
@@ -84,7 +100,7 @@ app.get('/api/koleksi/:id', async (req, res) => {
   try {
     const [rows] = await pool.query(
       'SELECT id, judul, gambar, deskripsi FROM galeri WHERE id = ? LIMIT 1',
-      [id]
+      [id],
     )
     if (!rows.length) return res.status(404).json({ error: 'Not found' })
     res.json(rows[0])
