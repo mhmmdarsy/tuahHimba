@@ -3,14 +3,16 @@ import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 
 const useMedia = (queries, values, defaultValue) => {
-  const get = () => values[queries.findIndex(q => matchMedia(q).matches)] ?? defaultValue
+  const get = () =>
+    values[queries.findIndex(q => matchMedia(q).matches)] ?? defaultValue
 
   const [value, setValue] = useState(get)
 
   useEffect(() => {
     const handler = () => setValue(get)
     queries.forEach(q => matchMedia(q).addEventListener('change', handler))
-    return () => queries.forEach(q => matchMedia(q).removeEventListener('change', handler))
+    return () =>
+      queries.forEach(q => matchMedia(q).removeEventListener('change', handler))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [queries])
 
@@ -42,8 +44,8 @@ const preloadImages = async urls => {
           const img = new Image()
           img.src = src
           img.onload = img.onerror = () => resolve()
-        })
-    )
+        }),
+    ),
   )
 }
 
@@ -58,12 +60,17 @@ const Masonry = ({
   blurToFocus = true,
   colorShiftOnHover = true,
   overlayHoverOpacity = 0.4,
-  overlayHoverDuration = 0.3
+  overlayHoverDuration = 0.3,
 }) => {
   const columns = useMedia(
-    ['(min-width:1500px)', '(min-width:1000px)', '(min-width:600px)', '(min-width:400px)'],
+    [
+      '(min-width:1500px)',
+      '(min-width:1000px)',
+      '(min-width:600px)',
+      '(min-width:400px)',
+    ],
     [5, 4, 3, 2],
-    1
+    1,
   )
 
   const [containerRef, { width }] = useMeasure()
@@ -91,7 +98,7 @@ const Masonry = ({
       case 'center':
         return {
           x: containerRect.width / 2 - item.w / 2,
-          y: containerRect.height / 2 - item.h / 2
+          y: containerRect.height / 2 - item.h / 2,
         }
       default:
         return { x: item.x, y: item.y + 100 }
@@ -139,7 +146,7 @@ const Masonry = ({
             y: start.y,
             width: item.w,
             height: item.h,
-            ...(blurToFocus && { filter: 'blur(10px)' })
+            ...(blurToFocus && { filter: 'blur(10px)' }),
           },
           {
             opacity: 1,
@@ -147,22 +154,23 @@ const Masonry = ({
             ...(blurToFocus && { filter: 'blur(0px)' }),
             duration: 0.8,
             ease: 'power3.out',
-            delay: index * stagger
-          }
+            delay: index * stagger,
+          },
         )
       } else {
         gsap.to(selector, {
           ...animProps,
           duration,
           ease,
-          overwrite: 'auto'
+          overwrite: 'auto',
         })
       }
     })
 
     // Ensure container height matches content
     const maxHeight = grid.reduce((m, i) => Math.max(m, i.y + i.h), 0)
-    if (containerRef.current) containerRef.current.style.height = `${maxHeight}px`
+    if (containerRef.current)
+      containerRef.current.style.height = `${maxHeight}px`
 
     hasMounted.current = true
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -173,13 +181,16 @@ const Masonry = ({
       gsap.to(`[data-key="${id}"]`, {
         scale: hoverScale,
         duration: 0.3,
-        ease: 'power2.out'
+        ease: 'power2.out',
       })
     }
     if (colorShiftOnHover) {
       const overlay = element.querySelector('.color-overlay')
       if (overlay)
-        gsap.to(overlay, { opacity: overlayHoverOpacity, duration: overlayHoverDuration })
+        gsap.to(overlay, {
+          opacity: overlayHoverOpacity,
+          duration: overlayHoverDuration,
+        })
     }
   }
 
@@ -188,12 +199,13 @@ const Masonry = ({
       gsap.to(`[data-key="${id}"]`, {
         scale: 1,
         duration: 0.3,
-        ease: 'power2.out'
+        ease: 'power2.out',
       })
     }
     if (colorShiftOnHover) {
       const overlay = element.querySelector('.color-overlay')
-      if (overlay) gsap.to(overlay, { opacity: 0, duration: overlayHoverDuration })
+      if (overlay)
+        gsap.to(overlay, { opacity: 0, duration: overlayHoverDuration })
     }
   }
 
