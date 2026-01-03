@@ -27,7 +27,8 @@ export default function Koleksi() {
         const x = a[i],
           y = b[i]
         if (!x || !y) return false
-        if (x.id !== y.id || x.judul !== y.judul || x.gambar !== y.gambar) return false
+        if (x.id !== y.id || x.judul !== y.judul || x.gambar !== y.gambar)
+          return false
       }
       return true
     }
@@ -75,8 +76,11 @@ export default function Koleksi() {
       slidesPerView: 1.5,
       spaceBetween: 20,
       loop: false,
-      navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
-      breakpoints: { 640: { slidesPerView: 1.5 }, 1024: { slidesPerView: 3 } }
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      breakpoints: { 640: { slidesPerView: 1.5 }, 1024: { slidesPerView: 3 } },
     })
     return () => {
       if (swiperRef.current) {
@@ -98,7 +102,13 @@ export default function Koleksi() {
             <div className="swiper-wrapper">
               {items.map(it => (
                 <div key={it.id} className="swiper-slide p-1">
-                  <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+                  <Card
+                    sx={{
+                      height: '100%',
+                      display: 'flex',
+                      flexDirection: 'column',
+                    }}
+                  >
                     <CardActionArea
                       onClick={() => navigate(`/deskripsi/${it.id}`)}
                       sx={{ alignItems: 'stretch' }}
@@ -116,7 +126,9 @@ export default function Koleksi() {
                         {/* You can add a short description here if available */}
                       </CardContent>
                     </CardActionArea>
-                    <CardActions sx={{ mt: 'auto', justifyContent: 'flex-end' }}>
+                    <CardActions
+                      sx={{ mt: 'auto', justifyContent: 'flex-end' }}
+                    >
                       <Button
                         size="small"
                         color="primary"
