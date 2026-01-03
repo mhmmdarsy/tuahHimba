@@ -11,7 +11,9 @@ export default function Footer() {
           style={{ width: '80%', maxWidth: 100 }}
         />
         <div>
-          <h3 className="text-2xl font-bold mb-4">PEMERINTAH KABUPATEN KUTAI KARTANEGARA</h3>
+          <h3 className="text-2xl font-bold mb-4">
+            PEMERINTAH KABUPATEN KUTAI KARTANEGARA
+          </h3>
           <div className="flex space-x-50">
             <div>
               <p className="mb-2 font-bold text-lg">Terhubung</p>
@@ -25,7 +27,9 @@ export default function Footer() {
                 </a>
               </p>
               <p className="text-sm">Alamat :</p>
-              <p className="mb-4 text-sm">Jalan Pahlawan No.1 Timbau Tenggarong</p>
+              <p className="mb-4 text-sm">
+                Jalan Pahlawan No.1 Timbau Tenggarong
+              </p>
               <p className="text-sm">Telepon :</p>
               <p className="mb-4 text-sm">(+62) 541 661350</p>
               <p className="text-sm">Fax :</p>
