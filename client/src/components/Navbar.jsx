@@ -17,7 +17,11 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto flex justify-between items-center text-black">
         <div className="text-2xl font-bold pl-2.5">
           <Link to="/" onClick={handleHomeClick} className="flex items-center">
-            <img src="/assets/icon/logo.svg" alt="Logo" className="h-9 aspect-auto ml-1" />
+            <img
+              src="/assets/icon/logo.svg"
+              alt="Logo"
+              className="h-9 aspect-auto ml-1"
+            />
           </Link>
         </div>
         <div className="space-x-11 text-white [&_a]:text-[14px] [&_a]:transition-colors [&_a]:duration-300 [&_a:hover]:text-[#85a3cc]">
