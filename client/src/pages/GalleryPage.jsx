@@ -32,16 +32,18 @@ export default function GalleryPage() {
         id: it.gambar || String(idx),
         img: `/assets/images/${it.gambar}`,
         url: `/assets/images/${it.gambar}`,
-        height: 600
+        height: 600,
       })),
-    [items]
+    [items],
   )
 
   return (
     <main className="pt-24 pb-16 px-6">
       <div className="max-w-7xl mx-auto">
         <h1 className="text-5xl font-extrabold mb-6">Galeri</h1>
-        <p className="text-gray-700 mb-8">Semua karya yang ada di Museum Kayu Tuah Himba.</p>
+        <p className="text-gray-700 mb-8">
+          Semua karya yang ada di Museum Kayu Tuah Himba.
+        </p>
 
         {error && <div className="text-red-600 mb-6">{error}</div>}
 
