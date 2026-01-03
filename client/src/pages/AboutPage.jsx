@@ -8,26 +8,31 @@ export default function AboutPage() {
         <div className="mb-12">
           <h2 className="text-5xl font-bold mb-4 pt-5">Tentang</h2>
           <p className="text-gray-700 mb-5">
-            Museum Kayu Tuah Himba memiliki lebih dari 855 koleksi yang terdiri dari berbagai jenis
-            kayu, herbarium, arboretum, rotan, serta benda-benda tradisional seperti peralatan
-            dapur, alat musik, dan alat tangkap ikan. Selain itu, museum ini juga menyimpan beberapa
-            koleksi binatang, termasuk buaya, kucing hutan, biawak, kepiting kelapa, dan
-            berang-berang. Untuk menjaga kelestarian koleksi, pihak museum bekerja sama dengan
-            dokter hewan dalam perawatan koleksi binatang, sementara pembersihan koleksi dilakukan
-            secara berkala guna memastikan kualitasnya tetap terjaga.
+            Museum Kayu Tuah Himba memiliki lebih dari 855 koleksi yang terdiri
+            dari berbagai jenis kayu, herbarium, arboretum, rotan, serta
+            benda-benda tradisional seperti peralatan dapur, alat musik, dan
+            alat tangkap ikan. Selain itu, museum ini juga menyimpan beberapa
+            koleksi binatang, termasuk buaya, kucing hutan, biawak, kepiting
+            kelapa, dan berang-berang. Untuk menjaga kelestarian koleksi, pihak
+            museum bekerja sama dengan dokter hewan dalam perawatan koleksi
+            binatang, sementara pembersihan koleksi dilakukan secara berkala
+            guna memastikan kualitasnya tetap terjaga.
           </p>
           <p className="text-gray-700 mb-5">
-            Museum Kayu Tuah Himba buka setiap hari dari pukul 09.00 hingga 16.00 WITA dengan harga
-            tiket masuk yang terjangkau. Harga tiket sebesar yaitu Rp5.000 untuk anak-anak dan
-            Rp10.000 untuk dewasa. Biaya parkir kendaraan roda dua dikenakan Rp2 ribu, sementara
-            roda empat sebesar Rp5 ribu.
+            Museum Kayu Tuah Himba buka setiap hari dari pukul 09.00 hingga
+            16.00 WITA dengan harga tiket masuk yang terjangkau. Harga tiket
+            sebesar yaitu Rp5.000 untuk anak-anak dan Rp10.000 untuk dewasa.
+            Biaya parkir kendaraan roda dua dikenakan Rp2 ribu, sementara roda
+            empat sebesar Rp5 ribu.
           </p>
           <p className="text-gray-700 mb-5">
-            Dengan koleksi yang unik dan nilai edukatif yang tinggi, Museum Kayu Tuah Himba menjadi
-            destinasi yang layak dikunjungi bagi siapa saja yang ingin mengenal lebih dalam tentang
-            hutan dan kekayaan alam Indonesia. Sebagai pengingat pentingnya pelestarian hutan,
-            museum ini juga mengusung pesan, "Satu pohon dapat membuat jutaan batang korek api,
-            tetapi satu batang korek api dapat membakar jutaan pohon."
+            Dengan koleksi yang unik dan nilai edukatif yang tinggi, Museum Kayu
+            Tuah Himba menjadi destinasi yang layak dikunjungi bagi siapa saja
+            yang ingin mengenal lebih dalam tentang hutan dan kekayaan alam
+            Indonesia. Sebagai pengingat pentingnya pelestarian hutan, museum
+            ini juga mengusung pesan, "Satu pohon dapat membuat jutaan batang
+            korek api, tetapi satu batang korek api dapat membakar jutaan
+            pohon."
           </p>
         </div>
       </div>
@@ -49,13 +54,19 @@ export default function AboutPage() {
         <ul className="list-disc pl-6 text-gray-700 text-lg">
           <li>Buaya Muara yang diawetkan (jantan dan betina)</li>
           <li>
-            Kerajinan Kutai yang terbuat dari rotan, seperti lemari, kursi, lampu, dan tempat tidur
+            Kerajinan Kutai yang terbuat dari rotan, seperti lemari, kursi,
+            lampu, dan tempat tidur
           </li>
-          <li>Kerajinan Dayak, seperti anjat, mandau, dan ukiran Dayak dari kayu ulin</li>
+          <li>
+            Kerajinan Dayak, seperti anjat, mandau, dan ukiran Dayak dari kayu
+            ulin
+          </li>
           <li>Miniatur rumah khas Dayak</li>
           <li>Koleksi biji-bijian</li>
           <li>Jenis-jenis kayu dari hutan daerah Kutai Kartanegara</li>
-          <li>Koleksi potongan log atau batangan pohon dari Hutan Kalimantan</li>
+          <li>
+            Koleksi potongan log atau batangan pohon dari Hutan Kalimantan
+          </li>
           <li>Koleksi kayu sebanyak 305 jenis</li>
           <li>Koleksi daun kayu yang dikeringkan sebanyak 250 buah</li>
           <li>Koleksi peralatan dapur tradisional sebanyak 12 jenis</li>
@@ -69,7 +80,9 @@ export default function AboutPage() {
       {/* Lokasi dan Jam Operasional */}
       <div className="max-w-7xl mx-auto text-left mt-3">
         <div className="mb-12">
-          <h2 className="text-5xl font-bold mb-4">Lokasi dan Jam Operasional</h2>
+          <h2 className="text-5xl font-bold mb-4">
+            Lokasi dan Jam Operasional
+          </h2>
           <div>
             <iframe
               title="Lokasi Museum Kayu Tuah Himba"
@@ -80,7 +93,8 @@ export default function AboutPage() {
               referrerPolicy="no-referrer-when-downgrade"
             />
             <div className="flex flex-col text-2xl mt-4">
-              <strong>Jam Operasional:</strong> Senin - Sabtu, 09:00 - 16:00 WITA.
+              <strong>Jam Operasional:</strong> Senin - Sabtu, 09:00 - 16:00
+              WITA.
             </div>
           </div>
         </div>
