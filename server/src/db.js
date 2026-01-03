@@ -5,7 +5,7 @@ const {
   DB_USER = 'root',
   DB_PASSWORD = '',
   DB_NAME = 'u353862197_galeri_museum',
-  DB_PORT = '3306'
+  DB_PORT = '3306',
 } = process.env
 
 export const pool = mysql.createPool({
@@ -16,5 +16,5 @@ export const pool = mysql.createPool({
   port: Number(DB_PORT),
   waitForConnections: true,
   connectionLimit: 10,
-  queueLimit: 0
+  queueLimit: 0,
 })
